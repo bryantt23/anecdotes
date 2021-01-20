@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
-const App = (props) => {
-  const [selected, setSelected] = useState(0)
+const App = props => {
+  const getRandom = () => {
+    var randomItem = Math.floor(Math.random() * anecdotes.length);
+    setSelected(randomItem);
+  };
+
+  const [selected, setSelected] = useState(0);
 
   return (
     <div>
       {props.anecdotes[selected]}
+      <button onClick={() => getRandom()}>next anecdote</button>
     </div>
-  )
-}
+  );
+};
 
 const anecdotes = [
   'If it hurts, do it more often',
@@ -18,9 +24,6 @@ const anecdotes = [
   'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
-]
+];
 
-ReactDOM.render(
-  <App anecdotes={anecdotes} />,
-  document.getElementById('root')
-)
+ReactDOM.render(<App anecdotes={anecdotes} />, document.getElementById('root'));
